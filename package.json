@@ -16,6 +16,18 @@
         "predeploy": "npm run build",
         "deploy": "gh-pages -d build"
     },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ],
+        "rules": {
+            "space-before-function-paren": [
+                "error",
+                "never"
+            ]
+        }
+    },
     "devDependencies": {
         "enzyme": "^3.8.0",
         "enzyme-adapter-react-16": "^1.7.1",

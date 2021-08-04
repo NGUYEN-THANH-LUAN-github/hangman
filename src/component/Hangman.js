@@ -38,16 +38,23 @@ class Hangman extends Component {
   }
 
   generateButtons() {
-    return 'abcdefghijklmnopqrstuvwxyz'.split('').map((ltr) =>
-      <AlphaButton key={ltr} value={ltr} handleClick={this.handleGuess} disabled={this.state.guessed.has(ltr)} />
-    )
+    return 'abcdefghijklmnopqrstuvwxyz'
+      .split('')
+      .map((ltr) => (
+        <AlphaButton
+          key={ltr}
+          value={ltr}
+          handleClick={this.handleGuess}
+          disabled={this.state.guessed.has(ltr)}
+        />
+      ))
   }
 
   restartGame() {
     this.setState({
       nWrong: 0,
       guessed: new Set(),
-      answer: randomWord()
+      answer: randomWord(),
     })
   }
 
@@ -55,28 +62,46 @@ class Hangman extends Component {
     return (
       <div className='Hangman'>
         <h1>Hangman</h1>
-        {this.guessedWord().includes('_') ?
+        {this.guessedWord().includes('_') ? (
           <div>
-            <img src={this.props.images[this.state.nWrong]} alt={`${this.state.nWrong}/6 wrong guesses.`} />
+            <img
+              src={this.props.images[this.state.nWrong]}
+              alt={`${this.state.nWrong}/6 wrong guesses.`}
+            />
             <p>Number wrong: {this.state.nWrong}/6 </p>
             <p className='Hangman-word'>{this.guessedWord()}</p>
-            {this.state.nWrong < this.props.maxWrong ?
-              <p className='Hangman-btns'>{this.generateButtons()}</p> :
+            {this.state.nWrong < this.props.maxWrong ? (
+              <p className='Hangman-btns'>{this.generateButtons()}</p>
+            ) : (
               <div>
                 <h3 style={{ color: 'red' }}>You lost</h3>
-                <p>Answer: <strong style={{ fontSize: '1.3em' }}>{this.state.answer}</strong></p>
+                <p>
+                  Answer:{' '}
+                  <strong style={{ fontSize: '1.3em' }}>
+                    {this.state.answer}
+                  </strong>
+                </p>
               </div>
-            }
+            )}
             <br />
-          </div> :
+          </div>
+        ) : (
           <div>
             <img src={win} alt='You Won' style={{ width: '400px' }} />
             <p className='Hangman-word'>{this.guessedWord()}</p>
           </div>
-        }
-        <button style={{ backgroundColor: "green", width: 'max-content', textAlign: 'center' }} onClick={this.restartGame}>Restart</button>
+        )}
+        <button
+          style={{
+            backgroundColor: 'green',
+            width: 'max-content',
+            textAlign: 'center',
+          }}
+          onClick={this.restartGame}>
+          Restart
+        </button>
         <span>Answer: {this.state.answer}</span>
-      </div >
+      </div>
     )
   }
 }
