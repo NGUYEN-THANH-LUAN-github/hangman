@@ -1,3 +1,3 @@
 # hangman
 
-[demo](https://nguyen-thanh-luan-github.github.io/hangman/)
+[demo](https://thanh-luan-nguyen.github.io/hangman/)
